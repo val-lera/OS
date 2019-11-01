@@ -9,7 +9,7 @@ int Prime(int n,int k){
         pid_t child;
         int fd[2];
         if (pipe(fd) == -1){
-            write(STDERR_FILENO, "error: pipe\n", sizeof(char));
+            write(STDERR_FILENO, "error: pipe\n", sizeof(char[13]));
             exit(EXIT_FAILURE);
         }
         int s;
@@ -30,11 +30,11 @@ int Prime(int n,int k){
                 s=1;
             write(fd[1], &s, sizeof(s));
             if(write(fd[1], &s, sizeof(s)) == -1)
-                write(STDERR_FILENO, "error: write\n", sizeof "error: write\n"-1);
+                write(STDERR_FILENO, "error: write\n", sizeof(char[14]));
             exit(0);
         }
         else 
-            write(STDERR_FILENO, "error: fork\n", sizeof "error: fork\n"-1);
+            write(STDERR_FILENO, "error: fork\n", sizeof(char[13]));
             exit(EXIT_FAILURE);;
     }
     else return 1;
@@ -44,12 +44,12 @@ int main()
 {
     char i[4];
     int n;
-    write(STDERR_FILENO, "Введите число: ", sizeof "Введите число: "-1);
+    write(STDERR_FILENO, "Введите число: ", sizeof(char[28]));
     read(STDIN_FILENO, i, 4);
     n=atoi(i);
     if(Prime(n,2))
-        write(STDERR_FILENO, "Число простое\n", sizeof "Число простое\n"-1);
+        write(STDERR_FILENO, "Число простое\n", sizeof(char[27]));
     else
-        write(STDERR_FILENO, "Число не является простым\n", sizeof "Число не является простым\n"-1);
+        write(STDERR_FILENO, "Число не является простым\n", sizeof(char[49]));
     return 0;
 }
